@@ -1,0 +1,15 @@
+name: rust-fetch
+version: "0.1"
+author: Jack Sauriol <saurioljohn@gmail.com>
+about: Prints information about the local system
+args:
+    - raw:
+        short: r
+        long: raw
+        help: Prints numbers in bare format
+    - filesystem:
+        short: f
+        long: filesystem
+        value_name: FILESYSTEM
+        takes_value: true
+        help: Defines the filesystem to list the size of (Defaults to / for Unix and C for Windows)

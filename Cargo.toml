@@ -1,0 +1,9 @@
+[package]
+name = "rust_fetch"
+version = "0.1.0"
+authors = ["Jack Sauriol <saurioljohn@gmail.com>"]
+
+[dependencies]
+system_information = { path = "/home/sauriol/Documents/Rust/system_information" }
+colored = "1.6.0"
+clap = {version = "2.31", features = ["yaml"]}
