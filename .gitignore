@@ -1,5 +1,5 @@
 
 /target
 **/*.rs.bk
-src/cpp/*.exe
-src/cpp/disk
+/src/cpp/*.exe
+/src/cpp/disk
