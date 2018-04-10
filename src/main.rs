@@ -52,16 +52,28 @@ fn print_disk_info(human_readable: bool, fs: &str) {
     if human_readable {
         let disk = system_information::get_readable_disk_info(fs);
 
-        println!("{}: {}", "Total Disk Space".blue().bold(), disk[0]);
-        println!("{}: {}", "Available Disk Space".blue().bold(), disk[1]);
-        println!("{}: {}", "In Use Disk Space".blue().bold(), disk[2]);
+        if disk.len() >= 1 {
+            println!("{}: {}", "Total Disk Space".blue().bold(), disk[0]);
+        }
+        if disk[1].len() >= 2 {
+            println!("{}: {}", "Available Disk Space".blue().bold(), disk[1]);
+        }
+        if disk[2].len() >= 3 {
+            println!("{}: {}", "In Use Disk Space".blue().bold(), disk[2]);
+        }
     }
     else {
         let disk = system_information::get_disk_info(fs);
 
-        println!("{}: {} bytes", "Total Disk Space".blue().bold(), disk.total.unwrap());
-        println!("{}: {} bytes", "Available Disk Space".blue().bold(), disk.free.unwrap());
-        println!("{}: {} bytes", "In Use Disk Space".blue().bold(), disk.in_use.unwrap());
+        if disk.total.is_some() {
+            println!("{}: {} bytes", "Total Disk Space".blue().bold(), disk.total.unwrap());
+        }
+        if disk.free.is_some() {
+            println!("{}: {} bytes", "Available Disk Space".blue().bold(), disk.free.unwrap());
+        }
+        if disk.in_use.is_some() {
+            println!("{}: {} bytes", "In Use Disk Space".blue().bold(), disk.in_use.unwrap());
+        }
     }
 }
 
@@ -76,16 +88,28 @@ fn print_mem_info(human_readable: bool) {
     else {
         let mem = system_information::get_mem_info();
 
-        println!("{}: {} bytes", "Total Memory".blue().bold(), mem.total.unwrap());
-        println!("{}: {} bytes", "Available Memory".blue().bold(), mem.free.unwrap());
-        println!("{}: {} bytes", "In Use Memory".blue().bold(), mem.in_use.unwrap());
+        if mem.total.is_some() {
+            println!("{}: {} bytes", "Total Memory".blue().bold(), mem.total.unwrap());
+        }
+        if mem.free.is_some() {
+            println!("{}: {} bytes", "Available Memory".blue().bold(), mem.free.unwrap());
+        }
+        if mem.in_use.is_some() {
+            println!("{}: {} bytes", "In Use Memory".blue().bold(), mem.in_use.unwrap());
+        }
     }
 }
 
 fn print_cpu_info() {
     let cpu = system_information::get_cpu_info();
 
-    println!("{}: {}", "CPU Model".blue().bold(), cpu.model.unwrap());
-    println!("{}: {}", "CPU Cores".blue().bold(), cpu.num.unwrap());
-    println!("{}: {} mhz", "CPU Speed".blue().bold(), cpu.mhz.unwrap());
+    if cpu.model.is_some() {
+        println!("{}: {}", "CPU Model".blue().bold(), cpu.model.unwrap());
+    }
+    if cpu.num.is_some() {
+        println!("{}: {}", "CPU Cores".blue().bold(), cpu.num.unwrap());
+    }
+    if cpu.mhz.is_some() {
+        println!("{}: {} mhz", "CPU Speed".blue().bold(), cpu.mhz.unwrap());
+    }
 }
