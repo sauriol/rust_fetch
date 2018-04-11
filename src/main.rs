@@ -52,13 +52,13 @@ fn print_disk_info(human_readable: bool, fs: &str) {
     if human_readable {
         let disk = system_information::get_readable_disk_info(fs);
 
-        if disk.len() >= 1 {
+        if disk[0].len() >= 1 {
             println!("{}: {}", "Total Disk Space".blue().bold(), disk[0]);
         }
-        if disk[1].len() >= 2 {
+        if disk[1].len() >= 1 {
             println!("{}: {}", "Available Disk Space".blue().bold(), disk[1]);
         }
-        if disk[2].len() >= 3 {
+        if disk[2].len() >= 1 {
             println!("{}: {}", "In Use Disk Space".blue().bold(), disk[2]);
         }
     }
@@ -81,9 +81,15 @@ fn print_mem_info(human_readable: bool) {
     if human_readable {
         let mem = system_information::get_readable_mem_info();
 
-        println!("{}: {}", "Total Memory".blue().bold(), mem[0]);
-        println!("{}: {}", "Available Memory".blue().bold(), mem[1]);
-        println!("{}: {}", "In Use Memory".blue().bold(), mem[2]);
+        if mem[0].len() >= 1 {
+            println!("{}: {}", "Total Memory".blue().bold(), mem[0]);
+        }
+        if mem[1].len() >= 1 {
+            println!("{}: {}", "Available Memory".blue().bold(), mem[1]);
+        }
+        if mem[2].len() >= 1 {
+            println!("{}: {}", "In Use Memory".blue().bold(), mem[2]);
+        }
     }
     else {
         let mem = system_information::get_mem_info();
